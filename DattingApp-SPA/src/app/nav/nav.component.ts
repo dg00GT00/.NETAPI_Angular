@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../_service/auth.service';
-import { IFormModel } from '../interfaces/general.interface';
+import { IFormModel, IDecodeToken } from '../interfaces/general.interface';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AlertifyService } from '../_service/alertify.service';
 
 @Component({
     selector: 'app-nav',
@@ -12,25 +13,33 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class NavComponent implements OnInit {
     model: IFormModel = { username: '', password: '' };
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService,
+                private alertify: AlertifyService) { }
 
     ngOnInit() {
     }
 
     login(): void {
         this.authService.login(this.model).subscribe(
-            () => console.log('Logged in successfuly'),
-            (error: HttpErrorResponse) => console.log(error)
+            () => {
+                this.alertify.sucess('Logged in succesfully')
+            },
+            (error: HttpErrorResponse) => this.alertify.error(error)
         )
     }
 
     loggedIn(): boolean {
-        const token = localStorage.getItem('token');
-        return !!token;
+        return this.authService.loggedIn();
     }
 
     logOut(): void {
         localStorage.removeItem('token');
-        console.log('Logged out');
+        this.alertify.message("Logged out");
     }
+
+    
+    public get getUserName() : string {
+        return this.authService.decodeToken.unique_name
+    }
+    
 }

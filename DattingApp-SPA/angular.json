@@ -25,12 +25,25 @@
                         ],
                         "styles": [
                             {
+                                "input": "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+                            },
+                            {
                                 "input": "node_modules/bootstrap/dist/css/bootstrap.min.css",
                                 "bundleName": "bootstrap"
                             },
                             {
+                                "input": "node_modules/bootswatch/dist/lumen/bootstrap.min.css",
+                                "bundleName": "bootswatch"
+                            },
+                            {
                                 "input": "node_modules/font-awesome/css/font-awesome.min.css",
                                 "bundleName": "font-awesome"
+                            },
+                            {
+                                "input": "node_modules/alertifyjs/build/css/alertify.min.css"
+                            },
+                            {
+                                "input": "node_modules/alertifyjs/build/css/themes/bootstrap.min.css"
                             },
                             "src/styles.css"
                         ],
@@ -97,6 +110,8 @@
                             "src/assets"
                         ],
                         "styles": [
+                            "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
                             "src/styles.css"
                         ],
                         "scripts": []
