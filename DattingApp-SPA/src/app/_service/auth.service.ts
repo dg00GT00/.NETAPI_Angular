@@ -13,13 +13,13 @@ interface IToken {
     providedIn: 'root'
 })
 export class AuthService {
-    private baseUrl = 'http://localhost:5000/api/auth/';
+    private baseUrl = 'http://localhost:5000/api/auth/login';
     private jwtHelper = new JwtHelperService();
 
     constructor(private http: HttpClient) { }
 
     login(model: IFormModel): Observable<void> {
-        return this.http.post<IToken>(this.baseUrl + 'login', model)
+        return this.http.post<IToken>(this.baseUrl, model)
             .pipe(
                 map((response: IToken): void => {
                     if (response.token) {
@@ -45,5 +45,4 @@ export class AuthService {
             return this.jwtHelper.decodeToken(token);
         }
     }
-    
 }

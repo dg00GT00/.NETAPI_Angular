@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { AuthService } from '../_service/auth.service';
-import { IFormModel, IDecodeToken } from '../interfaces/general.interface';
+import { IFormModel} from '../interfaces/general.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertifyService } from '../_service/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-nav',
@@ -14,7 +14,8 @@ export class NavComponent implements OnInit {
     model: IFormModel = { username: '', password: '' };
 
     constructor(private authService: AuthService,
-                private alertify: AlertifyService) { }
+                private alertify: AlertifyService,
+                private router: Router) { }
 
     ngOnInit() {
     }
@@ -24,7 +25,10 @@ export class NavComponent implements OnInit {
             () => {
                 this.alertify.sucess('Logged in succesfully')
             },
-            (error: HttpErrorResponse) => this.alertify.error(error)
+            (error: HttpErrorResponse) => this.alertify.error(error),
+            () => {
+                this.router.navigate(['/members']);
+            }
         )
     }
 
@@ -35,6 +39,7 @@ export class NavComponent implements OnInit {
     logOut(): void {
         localStorage.removeItem('token');
         this.alertify.message("Logged out");
+        this.router.navigate(['/home']);
     }
 
     

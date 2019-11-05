@@ -20,7 +20,10 @@ export class AlertifyService {
     sucess(message: string): void {
         alertify.success(message);
     }
-    error(message: HttpErrorResponse): void {
+
+    error(message: string): void;
+    error(message: HttpErrorResponse): void;
+    error(message): any {
         alertify.error(message);
     }
     warning(message: string): void {
