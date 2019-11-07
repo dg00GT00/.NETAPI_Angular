@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { IFormModel, IDecodeToken } from '../interfaces/general.interface';
 import { map } from "rxjs/operators";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { environment } from 'src/environments/environment';
 
 interface IToken {
     token: string
@@ -13,7 +14,7 @@ interface IToken {
     providedIn: 'root'
 })
 export class AuthService {
-    private baseUrl = 'http://localhost:5000/api/auth/login';
+    private baseUrl = environment.apiUrl + 'auth/login';
     private jwtHelper = new JwtHelperService();
 
     constructor(private http: HttpClient) { }
@@ -38,8 +39,8 @@ export class AuthService {
         return !this.jwtHelper.isTokenExpired(token);
     }
 
-    
-    public get decodeToken() : IDecodeToken {
+
+    public get decodeToken(): IDecodeToken {
         const token = localStorage.getItem('token');
         if (token) {
             return this.jwtHelper.decodeToken(token);

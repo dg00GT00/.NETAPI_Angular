@@ -8,7 +8,7 @@ import { IValue } from '../interfaces/general.interface';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-    private registerMode = false;
+    registerMode = false;
 
     constructor(private http: HttpClient) { }
 
