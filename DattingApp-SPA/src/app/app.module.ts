@@ -19,6 +19,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { MemberDetailComponent } from './member/member-detail/member-detail.component';
 import { NgxGalleryModule } from "ngx-gallery";
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -41,7 +42,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
         ListsComponent,
         MessagesComponent,
         MemberCarComponent,
-        MemberDetailComponent
+        MemberDetailComponent,
+        MemberEditComponent
     ],
     imports: [
         FormsModule,

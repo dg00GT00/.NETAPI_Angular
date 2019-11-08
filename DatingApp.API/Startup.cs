@@ -42,8 +42,8 @@ namespace DatingApp.API
                 x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddCors();
-            services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddControllers();
+            services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddMvc(option => option.EnableEndpointRouting = false)

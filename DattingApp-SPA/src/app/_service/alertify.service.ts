@@ -17,7 +17,7 @@ export class AlertifyService {
         })
     }
 
-    sucess(message: string): void {
+    success(message: string): void {
         alertify.success(message);
     }
 
